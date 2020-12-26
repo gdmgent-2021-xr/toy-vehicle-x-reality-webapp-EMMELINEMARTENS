@@ -10,21 +10,24 @@ import Car from './toy.glb';
 
 
 
-export default (props) => {
-    const state = proxy({
-  current: null,
-  items: {
-    bodycolor:"#0C0C0C",
-    candylabcolor:"#E7E7E7",
-    lightstripered:"#E70016",
-    yellow:"#E7A305",
-    // darkgrey:"#ffffff",
-    lightred:"#E72345",
-    windowcolor:"#E7E7E7",
-    white:"#ffffff",
-  },
-});
 
+
+export default ({props, state, snap}) => {
+//     const state = proxy({
+//   current: null,
+//   items: {
+//     bodycolor:"#0C0C0C",
+//     candylabcolor:"#E7E7E7",
+//     lightstripered:"#E70016",
+//     yellow:"#E7A305",
+//     // darkgrey:"#ffffff",
+//     lightred:"#E72345",
+//     windowcolor:"#E7E7E7",
+//     white:"#ffffff",
+//   },
+// });
+
+const [hovered, setHover] = useState(null);
 
   // const cargltf = useGLTF(Car, true);
   const carRef = useRef()
@@ -35,14 +38,18 @@ export default (props) => {
   console.log(nodes);
   console.log(materials);
 
+  // useState
+  // const [hovered, setHover] = useState(null);
+// const snap = useProxy(state);
 
-  // snapshot state
-  const snap = useProxy(state);
-  console.log(snap.items.bodycolor);
+
 
   return (
     <>
-<group ref={carRef} {...props} dispose={null}>
+<group ref={carRef} {...props} dispose={null}
+onPointerOver={(e)=> (setHover(e.object.material.name))}
+onPointerOut={(e) => setHover(null)}
+>
     <primitive ref={carRef} object={nodes.Scene} />
 
  <mesh

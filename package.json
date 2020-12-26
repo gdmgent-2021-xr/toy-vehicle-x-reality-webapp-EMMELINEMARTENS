@@ -19,6 +19,7 @@
     "panolens": "^0.11.0",
     "react": "^16.13.1",
     "react-360-cli": "^1.1.0",
+    "react-colorful": "^4.4.4",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.3",
     "react-spring": "^8.0.27",
