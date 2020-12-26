@@ -25,6 +25,7 @@
     "react-three-fiber": "^5.0.3",
     "react-three-gui": "^0.4.1",
     "three": "^0.121.1",
+    "valtio": "^0.5.0",
     "webvr-polyfill": "^0.10.12"
   },
   "browserslist": {
