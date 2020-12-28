@@ -28,7 +28,7 @@ import "./styles.css";
     candylabcolor:"#E7E7E7",
     lightstripered:"#E70016",
     yellow:"#E7A305",
-    // darkgrey:"#ffffff",
+    darkgrey:"#121212",
     lightred:"#E72345",
     windowcolor:"#E7E7E7",
     white:"#ffffff",
@@ -46,6 +46,7 @@ function Picker (snap){
       <span className="colorPicker"><input id="window-color" type="color" value={state.items.windowcolor} onInput={(e)=>{state.items.windowcolor = e.target.value}}></input><br/>Window</span>
       <span className="colorPicker"><input id="sirene-color" type="color" value={state.items.lightred} onInput={(e)=>{state.items.lightred = e.target.value}}></input><br/>Sirene light</span>
       <span className="colorPicker"><input id="lightstripe-color" type="color" value={state.items.lightstripered} onInput={(e)=>{state.items.lightstripered = e.target.value}}></input><br/>Lightstripe</span>
+      <span className="colorPicker"><input id="wheels-color" type="color" value={state.items.darkgrey} onInput={(e)=>{state.items.darkgrey = e.target.value}}></input><br/>Wheels</span>
     </div>
   )
 }

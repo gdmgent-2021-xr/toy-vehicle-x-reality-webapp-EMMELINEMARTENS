@@ -152,14 +152,14 @@ onPointerOut={(e) => setHover(null)}
         scale={[0.5, 0.5, 0.05]}
         material-color={snap.items.yellow}
       />
-      {/* <mesh
+      <mesh
         material={materials.darkgrey}
         geometry={nodes.wheels.geometry}
         position={[2.67, 1.2, 2.97]}
         rotation={[1.55, 0.43, -3.14]}
-        scale={[0.79, 0.18, 0.79]}>
-        <mesh material={materials.darkgrey} geometry={nodes.wheel.geometry} position={[9.39, 0.9, -4.26]} />
-      </mesh> */}
+        scale={[0.79, 0.18, 0.79]}
+        material-color={snap.items.darkgrey}
+        />
     
     </group>
     </>
