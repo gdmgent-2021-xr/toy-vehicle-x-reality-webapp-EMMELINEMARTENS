@@ -1,47 +1,68 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, PointerLockControls } from "@react-three/drei";
 import * as THREE from 'three';
 import { a, useSpring } from "react-spring/three";
 import{proxy, useProxy} from "valtio";
 
+// keyboardcontrols 
+import {KeyboardControls} from 'App/utils';
+import {useControl} from 'react-three-gui';
+
+// import Car model
 import Car from './toy.glb';
 
-
-
-
-
-
 export default ({props, state, snap}) => {
-//     const state = proxy({
-//   current: null,
-//   items: {
-//     bodycolor:"#0C0C0C",
-//     candylabcolor:"#E7E7E7",
-//     lightstripered:"#E70016",
-//     yellow:"#E7A305",
-//     // darkgrey:"#ffffff",
-//     lightred:"#E72345",
-//     windowcolor:"#E7E7E7",
-//     white:"#ffffff",
-//   },
-// });
-
-const [hovered, setHover] = useState(null);
+  const [hovered, setHover] = useState(null);
 
   // const cargltf = useGLTF(Car, true);
   const carRef = useRef();
   const frontwheelsRef = useRef();
   const backwheelsRef = useRef();
-  const candylabtextRef=useRef();
   const { nodes, materials } = useGLTF(Car, true)
 
-  // cargltf.scene.children[1].color.set("red");
+
 const Ref = (ref) => {
 useFrame(()=> {
 ref.current.rotation.y += 0.04;
 })
 }
+
+
+// Keyboardcontrollers
+
+
+let d;
+document.addEventListener('keydown', direction);
+   //which direction
+function Checkinput(){
+if( d === "LEFT") carRef.current.position.x -= 1;
+if (d === "UP") carRef.current.position.y += 1;
+if( d==="RIGHT") carRef.current.position.x += 1;
+if( d==="DOWN") carRef.current.position.y -= 1;
+}
+
+function direction(event) {
+	if (event.keyCode === 37 && d !== "RIGHT"){
+  d = "LEFT";
+Checkinput();
+}else if(event.keyCode === 38 && d !== "DOWN"){
+  d = "UP";
+  Checkinput();
+	} else if (event.keyCode === 39 && d !== "LEFT"){
+  d = "RIGHT";
+  Checkinput();
+	} else if (event.keyCode === 40 && d !== "UP"){
+  d = "DOWN";
+  Checkinput();
+}
+}
+
+
+
+
+
+
 
 
 
@@ -54,12 +75,12 @@ Ref(backwheelsRef);
 
   return (
     <>
-    
 <group ref={carRef} {...props} dispose={null} 
 scale={[0.4,0.4,0.4]}
 position={[-9,-3.9,-5.5]}
 onPointerOver={(e)=> (setHover(e.object.material.name))}
 onPointerOut={(e) => setHover(null)}
+onkeydown={(e)=> direction}
 >
     {/* <primitive ref={carRef} object={nodes.Scene} /> */}
 
