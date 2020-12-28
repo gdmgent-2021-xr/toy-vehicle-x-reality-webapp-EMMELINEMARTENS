@@ -46,7 +46,9 @@ const [hovered, setHover] = useState(null);
 
   return (
     <>
-<group ref={carRef} {...props} dispose={null}
+<group ref={carRef} {...props} dispose={null} 
+scale={[0.4,0.4,0.4]}
+position={[-9,-3.9,-5.5]}
 onPointerOver={(e)=> (setHover(e.object.material.name))}
 onPointerOut={(e) => setHover(null)}
 >

@@ -16,6 +16,8 @@ import {
   Pano,
   Tripod,
   Car,
+  Clouds,
+  Background,
 } from "App/components";
 import "./styles.css";
 
@@ -81,6 +83,8 @@ export default () => {
       {false && <Tripod />}
       {true && (
         <Suspense fallback={null}>
+          <Background/>
+          {/* <Clouds/> */}
           {/* <Suzanne /> */}
           {true && <Car state={state}  snap={snap} />}
           {/* <GlTransmissionFormat /> */}
