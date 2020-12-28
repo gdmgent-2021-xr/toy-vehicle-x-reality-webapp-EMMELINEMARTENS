@@ -43,16 +43,16 @@ if( d==="DOWN") carRef.current.position.y -= 1;
 }
 
 function direction(event) {
-	if (event.keyCode === 37 && d !== "RIGHT"){
+	if (event.keyCode === 37){
   d = "LEFT";
 Checkinput();
-}else if(event.keyCode === 38 && d !== "DOWN"){
+}else if(event.keyCode === 38){
   d = "UP";
   Checkinput();
-	} else if (event.keyCode === 39 && d !== "LEFT"){
+	} else if (event.keyCode === 39){
   d = "RIGHT";
   Checkinput();
-	} else if (event.keyCode === 40 && d !== "UP"){
+	} else if (event.keyCode === 40 ){
   d = "DOWN";
   Checkinput();
 }
