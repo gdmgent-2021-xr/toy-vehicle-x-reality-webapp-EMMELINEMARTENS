@@ -16,6 +16,7 @@ import Car from './toy.glb';
 export default ({props, state, snap, score}) => {
   const [hovered, setHover] = useState(null);
 
+
   // const cargltf = useGLTF(Car, true);
   const carRef = useRef();
   const frontwheelsRef = useRef();
@@ -40,7 +41,6 @@ function Score(){
 let CarPositionX = carRef.current.position.x;
 if(CarPositionX === state.position.x) {
     state.score++;
-    console.log(state.score);
     let ThiefPositionX = Math.floor(Math.random(0, 10) * 10);
     let ThiefPositionY= Math.random(-10, 10);
    state.position.x = ThiefPositionX;
@@ -65,7 +65,7 @@ if( d==="DOWN") carRef.current.position.y -= 1;
 
 function direction(event) {
   document.getElementById('intro').style.display = "none";
-  
+
 	if (event.keyCode === 37){
   d = "LEFT";
     carRef.current.rotation.z = 0;

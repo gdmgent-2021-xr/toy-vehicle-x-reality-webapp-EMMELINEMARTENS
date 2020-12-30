@@ -11,9 +11,7 @@ import * as THREE from "three";
 
 import {
   Lighting,
-  Tripod,
   Car,
-  Clouds,
   Background,
 } from "App/components";
 import "./styles.css";
@@ -66,7 +64,7 @@ function Intro(){
  state. score = 0;
   state.position.x = 0;
   state.position.y = 0;
-  console.log(state.position.x);
+  state.position.z = -5.5;
 };
 
 
@@ -90,37 +88,16 @@ function Showscore(){
 export default () => {
    const snap = useProxy(state);
 
- const showAxesHelper = useControl("Axes Helper", {
-    group: "Helpers",
-    type: "boolean",
-    value: true,
-  });
-  const showGridHelper = useControl("Grid Helper", {
-    group: "Helpers",
-    type: "boolean",
-    value: true,
-  });
-
   return (
     <>
     <Picker/>
      <Intro/>
      <Showscore/>
     <Canvas>
-      <group>
-      {showAxesHelper && <axesHelper />}
-        {showGridHelper && <gridHelper args={[10, 10, 0xffffff, 0x333333]} />}
-      
-      <OrbitControls enablePan={true} enableRotate={true} enableZoom={true} />
-      <FlyControls dragToLook={true} />
-      {false && <DefaultXRControllers />}
-      </group>
-
       {true && <Lighting />}
       {true && (
         <Suspense fallback={null}>
           <Background/>
-          {/* <Clouds/> */}
           {true && <Car state={state}  snap={snap} />}
         </Suspense>
       )}
