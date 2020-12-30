@@ -8,6 +8,7 @@ canvas {
 
 body {
   margin: 0;
+  overflow:hidden;
 }
 
 .pano-image{
@@ -31,4 +32,38 @@ font-size:12pt;
 
   
 }
+.intro {
+  width: 30%;
+  height: 10vh;
+  background-color: "red";
+  position: absolute;
+  top:20%;
+  left: 5%;
+  z-index:1;
+  display:"block";
+}
 
+.score {
+    width: 10%;
+    height: 5vh;
+    background-color: "red";
+    position: absolute;
+    top:12%;
+    left: 5%;
+    z-index:1;
+    display:"block";
+    font-weight:700;
+    font-size: 14pt;
+}
+
+.TheEnd{
+    width: 40%;
+    height: 5vh;
+    position: absolute;
+    top:20%;
+    left: 35%;
+    z-index:2;
+    display:"block";
+    font-weight:700;
+    font-size: 14pt;
+}

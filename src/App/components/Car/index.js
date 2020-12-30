@@ -13,7 +13,7 @@ import Car from './toy.glb';
 
 
 
-export default ({props, state, snap}) => {
+export default ({props, state, snap, score}) => {
   const [hovered, setHover] = useState(null);
 
   // const cargltf = useGLTF(Car, true);
@@ -34,34 +34,19 @@ ref.current.rotation.y += 0.04;
 })
 }
 
-// score var
-let score = 0;
-
-
-
 
 function Score(){
   // positions
 let CarPositionX = carRef.current.position.x;
-
-
-
-
-	if(CarPositionX === state.position.x) {
-    score++;
+if(CarPositionX === state.position.x) {
+    state.score++;
+    console.log(state.score);
     let ThiefPositionX = Math.floor(Math.random(0, 10) * 10);
     let ThiefPositionY= Math.random(-10, 10);
    state.position.x = ThiefPositionX;
    state.position.y = ThiefPositionY;
-   console.log(ThiefPositionX);
-  console.log('work xp');
-       
-console.log(carRef.current.position.x);
-
-// score function
     }
   }
-   console.log(state.position.x);
 
 
 
@@ -79,6 +64,8 @@ if( d==="DOWN") carRef.current.position.y -= 1;
 }
 
 function direction(event) {
+  document.getElementById('intro').style.display = "none";
+  
 	if (event.keyCode === 37){
   d = "LEFT";
     carRef.current.rotation.z = 0;
@@ -115,8 +102,6 @@ Ref(backwheelsRef);
 <group ref={carRef} {...props} dispose={null} 
 scale={[0.4,0.4,0.4]}
 position={[-9,-3.9,-5.5]}
-onPointerOver={(e)=> (setHover(e.object.material.name))}
-onPointerOut={(e) => setHover(null)}
 >
 
  <mesh

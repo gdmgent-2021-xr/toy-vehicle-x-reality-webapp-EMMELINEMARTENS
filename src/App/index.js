@@ -34,6 +34,7 @@ import "./styles.css";
     y: 0,
     z: -5.5
   },
+  score: 0,
 });
 function Picker (){
 
@@ -48,6 +49,41 @@ function Picker (){
       <span className="colorPicker"><input id="wheels-color" type="color" value={state.items.darkgrey} onChange={(e)=>{state.items.darkgrey = e.target.value}}></input><br/>Wheels</span>
     </div>
   )
+}
+
+function Intro(){
+  return (
+   <div className="intro" id="intro">
+    <h2>We will catch some thiefs will you help me?</h2>
+    <p>Use then your keyboard arrows to catch 15 thiefs</p>
+    <p>You can also pimp your police car maybe some camouflage can help so they don't see you at all.</p>
+    <p>For starting just use your keyboard arrows</p>
+  </div>
+  )
+}
+
+ function StartAgain(){
+ state. score = 0;
+  state.position.x = 0;
+  state.position.y = 0;
+  console.log(state.position.x);
+};
+
+
+function Showscore(){
+  if(state.score == 15){
+   
+    return( <div className="TheEnd" >
+                  <h2>Congratiolations you just catch 15 thiefs, WELL DONE!</h2>
+                  <p>Are you in the mood to catch more Thiefs?</p> 
+                  <p>Just click at the startbutton again to play again</p>
+                  <button id="The_end" onClick={StartAgain}>Catch more thiefs</button>
+            </div>
+    );
+  }
+ return(
+ <span className="score" id="score">THIEFS CATCHED: {state.score}</span>
+ )
 }
 
 
@@ -68,7 +104,8 @@ export default () => {
   return (
     <>
     <Picker/>
-    
+     <Intro/>
+     <Showscore/>
     <Canvas>
       <group>
       {showAxesHelper && <axesHelper />}
@@ -87,6 +124,7 @@ export default () => {
           {true && <Car state={state}  snap={snap} />}
         </Suspense>
       )}
+     
     </Canvas>
     </>
   );
