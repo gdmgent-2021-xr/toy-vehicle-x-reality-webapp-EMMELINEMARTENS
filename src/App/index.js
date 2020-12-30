@@ -1,14 +1,6 @@
-import React, { Suspense,useState } from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
-import { FlyControls, OrbitControls } from "@react-three/drei";
-import { DefaultXRControllers, VRCanvas } from "@react-three/xr";
-import { useControl } from "react-three-gui";
 import {proxy, useProxy} from 'valtio';
-
-
-import * as THREE from "three";
-
-
 import {
   Lighting,
   Car,
@@ -61,7 +53,7 @@ function Intro(){
 }
 
  function StartAgain(){
- state. score = 0;
+  state. score = 0;
   state.position.x = 0;
   state.position.y = 0;
   state.position.z = -5.5;
@@ -69,7 +61,7 @@ function Intro(){
 
 
 function Showscore(){
-  if(state.score == 15){
+  if(state.score === 15){
    
     return( <div className="TheEnd" >
                   <h2>Congratiolations you just catch 15 thiefs, WELL DONE!</h2>

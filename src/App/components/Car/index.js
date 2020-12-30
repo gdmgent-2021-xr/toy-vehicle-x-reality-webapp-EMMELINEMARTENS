@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { useFrame } from "react-three-fiber";
 import { useGLTF} from "@react-three/drei";
 import * as THREE from "three";
-import { a, useSpring } from "react-spring/three";
-import {proxy, useProxy} from 'valtio';
+import { a } from "react-spring/three";
+
 
 import Thief from "./thief.gltf";
 
@@ -13,8 +13,7 @@ import Car from './toy.glb';
 
 
 
-export default ({props, state, snap, score}) => {
-  const [hovered, setHover] = useState(null);
+export default ({props, state, snap}) => {
 
 
   // const cargltf = useGLTF(Car, true);
@@ -37,7 +36,8 @@ ref.current.rotation.y += 0.04;
 
 
 function Score(){
-  // positions
+  
+// positions
 let CarPositionX = carRef.current.position.x;
 if(CarPositionX === state.position.x) {
     state.score++;
@@ -51,11 +51,10 @@ if(CarPositionX === state.position.x) {
 
 
 // Keyboardcontrollers
-
-
 let d;
 document.addEventListener('keydown', direction);
-   //which direction
+
+//which direction
 function Checkinput(){
 if( d === "LEFT") carRef.current.position.x -= 1;
 if (d === "UP") carRef.current.position.y += 1;
