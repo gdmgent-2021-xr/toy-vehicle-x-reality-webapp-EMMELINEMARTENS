@@ -1,16 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
-import { useGLTF, PointerLockControls } from "@react-three/drei";
-import * as THREE from 'three';
+import { useGLTF} from "@react-three/drei";
+import * as THREE from "three";
 import { a, useSpring } from "react-spring/three";
-import{proxy, useProxy} from "valtio";
+import {proxy, useProxy} from 'valtio';
 
-// keyboardcontrols 
-import {KeyboardControls} from 'App/utils';
-import {useControl} from 'react-three-gui';
+import Thief from "./thief.gltf";
+
 
 // import Car model
 import Car from './toy.glb';
+
+
 
 export default ({props, state, snap}) => {
   const [hovered, setHover] = useState(null);
@@ -19,14 +20,49 @@ export default ({props, state, snap}) => {
   const carRef = useRef();
   const frontwheelsRef = useRef();
   const backwheelsRef = useRef();
-  const { nodes, materials } = useGLTF(Car, true)
+  const { nodes, materials } = useGLTF(Car, true);
+
+  const Thiefgltf = useGLTF(Thief, true);
+  const thiefRef = useRef();
+  
 
 
 const Ref = (ref) => {
 useFrame(()=> {
 ref.current.rotation.y += 0.04;
+
 })
 }
+
+// score var
+let score = 0;
+
+
+
+
+function Score(){
+  // positions
+let CarPositionX = carRef.current.position.x;
+
+
+
+
+	if(CarPositionX === state.position.x) {
+    score++;
+    let ThiefPositionX = Math.floor(Math.random(0, 10) * 10);
+    let ThiefPositionY= Math.random(-10, 10);
+   state.position.x = ThiefPositionX;
+   state.position.y = ThiefPositionY;
+   console.log(ThiefPositionX);
+  console.log('work xp');
+       
+console.log(carRef.current.position.x);
+
+// score function
+    }
+  }
+   console.log(state.position.x);
+
 
 
 // Keyboardcontrollers
@@ -45,44 +81,43 @@ if( d==="DOWN") carRef.current.position.y -= 1;
 function direction(event) {
 	if (event.keyCode === 37){
   d = "LEFT";
+    carRef.current.rotation.z = 0;
 Checkinput();
+Score();
 }else if(event.keyCode === 38){
   d = "UP";
+  carRef.current.rotation.z = THREE.MathUtils.degToRad(30);
   Checkinput();
+  Score();
 	} else if (event.keyCode === 39){
   d = "RIGHT";
+  carRef.current.rotation.z = 0;
   Checkinput();
+  Score();
 	} else if (event.keyCode === 40 ){
   d = "DOWN";
+  carRef.current.rotation.z = THREE.MathUtils.degToRad(-30);
   Checkinput();
+  Score();
 }
 }
 
-
-
-
-
-
-
-
-
-  // useState
-  // const [hovered, setHover] = useState(null);
-// const snap = useProxy(state);
+// refs for wheels
 Ref(frontwheelsRef);
 Ref(backwheelsRef);
 
 
+
+
   return (
     <>
+
 <group ref={carRef} {...props} dispose={null} 
 scale={[0.4,0.4,0.4]}
 position={[-9,-3.9,-5.5]}
 onPointerOver={(e)=> (setHover(e.object.material.name))}
 onPointerOut={(e) => setHover(null)}
-onkeydown={(e)=> direction}
 >
-    {/* <primitive ref={carRef} object={nodes.Scene} /> */}
 
  <mesh
         material={materials.windowcolor}
@@ -177,6 +212,12 @@ onkeydown={(e)=> direction}
       />
       
     </group>
+
+<primitive ref={thiefRef} object={Thiefgltf.scene} position={[snap.position.x,snap.position.y,snap.position.z]} scale={[0.7,0.7,0.7]}></primitive>
+     
+
+    
+   
     </>
   )
 };

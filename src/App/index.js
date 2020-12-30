@@ -4,7 +4,7 @@ import { FlyControls, OrbitControls } from "@react-three/drei";
 import { DefaultXRControllers, VRCanvas } from "@react-three/xr";
 import { useControl } from "react-three-gui";
 import {proxy, useProxy} from 'valtio';
-import {HexColorPicker} from 'react-colorful';
+
 
 import * as THREE from "three";
 
@@ -29,19 +29,23 @@ import "./styles.css";
     windowcolor:"#E7E7E7",
     white:"#ffffff",
   },
+  position:{
+    x: 0,
+    y: 0,
+    z: -5.5
+  },
 });
-function Picker (snap){
+function Picker (){
 
  
-  console.log(snap.items)
   return(
     <div className="main-color-container">
-			<span className="colorPicker"><input id="body-color" type="color" value={state.items.bodycolor} onInput={(e)=>{state.items.bodycolor = e.target.value}}></input><br/>Body</span>
-			<span className="colorPicker"><input id="shield-color" type="color" value={state.items.yellow} onInput={(e)=>{state.items.yellow = e.target.value}}></input><br/>Shield</span>
-      <span className="colorPicker"><input id="window-color" type="color" value={state.items.windowcolor} onInput={(e)=>{state.items.windowcolor = e.target.value}}></input><br/>Window</span>
-      <span className="colorPicker"><input id="sirene-color" type="color" value={state.items.lightred} onInput={(e)=>{state.items.lightred = e.target.value}}></input><br/>Sirene light</span>
-      <span className="colorPicker"><input id="lightstripe-color" type="color" value={state.items.lightstripered} onInput={(e)=>{state.items.lightstripered = e.target.value}}></input><br/>Lightstripe</span>
-      <span className="colorPicker"><input id="wheels-color" type="color" value={state.items.darkgrey} onInput={(e)=>{state.items.darkgrey = e.target.value}}></input><br/>Wheels</span>
+			<span className="colorPicker"><input id="body-color" type="color" value={state.items.bodycolor} onChange={(e)=>{state.items.bodycolor = e.target.value}}></input><br/>Body</span>
+			<span className="colorPicker"><input id="shield-color" type="color" value={state.items.yellow} onChange={(e)=>{state.items.yellow = e.target.value}}></input><br/>Shield</span>
+      <span className="colorPicker"><input id="window-color" type="color" value={state.items.windowcolor} onChange={(e)=>{state.items.windowcolor = e.target.value}}></input><br/>Window</span>
+      <span className="colorPicker"><input id="sirene-color" type="color" value={state.items.lightred} onChange={(e)=>{state.items.lightred = e.target.value}}></input><br/>Sirene light</span>
+      <span className="colorPicker"><input id="lightstripe-color" type="color" value={state.items.lightstripered} onChange={(e)=>{state.items.lightstripered = e.target.value}}></input><br/>Lightstripe</span>
+      <span className="colorPicker"><input id="wheels-color" type="color" value={state.items.darkgrey} onChange={(e)=>{state.items.darkgrey = e.target.value}}></input><br/>Wheels</span>
     </div>
   )
 }
@@ -63,7 +67,7 @@ export default () => {
 
   return (
     <>
-    <Picker snap={snap}/>
+    <Picker/>
     
     <Canvas>
       <group>
