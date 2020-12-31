@@ -44,7 +44,7 @@ function Picker (){
 function Intro(){
   return (
    <div className="intro" id="intro">
-    <h2>We will catch some thiefs will you help me?</h2>
+    <h2>We will caught some thiefs will you help me?</h2>
     <p>Use then your keyboard arrows to catch 15 thiefs</p>
     <p>You can also pimp your police car maybe some camouflage can help so they don't see you at all.</p>
     <p>For starting just use your keyboard arrows</p>
@@ -64,7 +64,7 @@ function Showscore(){
   if(state.score === 15){
    
     return( <div className="TheEnd" >
-                  <h2>Congratiolations you just catch 15 thiefs, WELL DONE!</h2>
+                  <h2>Congratiolations you just caught 15 thiefs, WELL DONE!</h2>
                   <p>Are you in the mood to catch more Thiefs?</p> 
                   <p>Just click at the startbutton again to play again</p>
                   <button id="The_end" onClick={StartAgain}>Catch more thiefs</button>
@@ -72,7 +72,7 @@ function Showscore(){
     );
   }
  return(
- <span className="score" id="score">THIEFS CATCHED: {state.score}</span>
+ <span className="score" id="score">THIEFS CAUGHTt: {state.score}</span>
  )
 }
 
