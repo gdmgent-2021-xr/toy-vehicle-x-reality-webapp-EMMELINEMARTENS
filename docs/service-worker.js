@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/toy-vehicle-x-reality-webapp-EMMELINEMARTENS/precache-manifest.d8e4b3e4806518fe383ca2c649068a24.js"
+  "/toy-vehicle-x-reality-webapp-EMMELINEMARTENS/precache-manifest.6b98babab05c5c86dae69d95b3034539.js"
 );
 
 self.addEventListener('message', (event) => {
